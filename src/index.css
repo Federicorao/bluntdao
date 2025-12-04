@@ -94,3 +94,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .animate-fog-flow-1 { animation: fogFlow 20s linear infinite; }
 .animate-fog-flow-2 { animation: fogFlow 30s linear infinite reverse; }
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(0,255,136,0.25), 0 0 12px rgba(0,255,136,0.15); filter: saturate(1); }
+  50% { box-shadow: 0 0 16px rgba(0,255,136,0.6), 0 0 28px rgba(0,255,136,0.3); filter: saturate(1.15); }
+}
+.glow-loop { animation: glowPulse 2s ease-in-out infinite; }

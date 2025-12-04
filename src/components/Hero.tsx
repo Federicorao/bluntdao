@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-black">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 md:pt-24 bg-black">
       {/* Background Gradient Blob */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
           <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[120px]" />
@@ -20,12 +20,12 @@ const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
                 <CheckCircle className="w-4 h-4 text-primary" />
                 <span className="text-sm font-bold text-white tracking-wider">THE BIGGEST IRL ONBOARDING MOVEMENT</span>
               </div>
 
-              <h1 className="text-6xl md:text-8xl font-heading font-black text-white mb-6 leading-[0.9]">
+              <h1 className="text-5xl md:text-8xl font-heading font-black text-white mb-6 leading-[0.9]">
                 <span className="block">PROOF</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">OF SESH</span>
               </h1>

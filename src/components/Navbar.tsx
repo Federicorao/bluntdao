@@ -54,9 +54,9 @@ const Navbar = ({ isHotboxActive, onToggleHotbox }: NavbarProps) => {
             {onToggleHotbox && (
               <button
                 onClick={onToggleHotbox}
-                className={`px-4 py-2 rounded-full border font-mono text-sm transition-all duration-500 ${
+                className={`px-4 py-2 rounded-full border font-mono text-sm transition-all duration-500 glow-loop ${
                   isHotboxActive 
-                    ? 'bg-green-900/80 border-green-500 text-green-400 shadow-[0_0_20px_rgba(0,255,0,0.3)]' 
+                    ? 'bg-green-900/80 border-green-500 text-green-400' 
                     : 'bg-black/50 border-white/10 text-gray-400 hover:bg-white/10'
                 }`}
               >
@@ -76,9 +76,9 @@ const Navbar = ({ isHotboxActive, onToggleHotbox }: NavbarProps) => {
             {onToggleHotbox && (
               <button
                 onClick={onToggleHotbox}
-                className={`px-3 py-1.5 rounded-full border font-mono text-xs transition-all duration-500 mr-2 ${
+                className={`px-3 py-1.5 rounded-full border font-mono text-xs transition-all duration-500 mr-2 glow-loop ${
                   isHotboxActive 
-                    ? 'bg-green-900/80 border-green-500 text-green-400 shadow-[0_0_20px_rgba(0,255,0,0.3)]' 
+                    ? 'bg-green-900/80 border-green-500 text-green-400' 
                     : 'bg-black/50 border-white/10 text-gray-400 hover:bg-white/10'
                 }`}
               >

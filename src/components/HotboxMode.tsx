@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface HotboxModeProps {
   active: boolean;
-  onToggle: () => void;
 }
 
 const HotboxMode = ({ active }: HotboxModeProps) => {
@@ -16,22 +15,34 @@ const HotboxMode = ({ active }: HotboxModeProps) => {
     }
   }, [active]);
 
-  // Generate multiple blunts with random starting positions and animations
-  const blunts = Array.from({ length: 10 }).map((_, i) => ({
-    id: i,
-    // Random delay between 0 and 5 seconds
-    delay: Math.random() * 5,
-    // Random duration between 10 and 20 seconds
-    duration: 10 + Math.random() * 10,
-    // Random vertical start position (0 to 100%)
-    top: `${Math.random() * 100}%`,
-    // Random size scale (0.5 to 1.5)
-    scale: 0.5 + Math.random(),
-    // Random direction (left-to-right or right-to-left)
-    direction: Math.random() > 0.5 ? 1 : -1,
-    // Random rotation speed multiplier
-    rotationSpeed: 0.5 + Math.random() * 1.5
-  }));
+  const vw = typeof window !== 'undefined' ? window.innerWidth : 1200;
+  const pathStart = -0.2 * vw;
+  const pathEnd = 1.2 * vw;
+  const pathLength = pathEnd - pathStart;
+  const blunts = Array.from({ length: 10 }).map((_, i) => {
+    const direction = Math.random() > 0.5 ? 1 : -1;
+    const startProgress = Math.random();
+    const startX = direction === 1
+      ? pathStart + startProgress * pathLength
+      : pathEnd - startProgress * pathLength;
+    const startRotate = (Math.random() * 360 - 180);
+    const baseY = (Math.random() * 40) - 20;
+    const scale = 0.5 + Math.random();
+    const duration = 10 + Math.random() * 10;
+    const rotationSpeed = 0.5 + Math.random() * 1.5;
+    return {
+      id: i,
+      delay: Math.random() * 2,
+      duration,
+      top: `${Math.random() * 90}%`,
+      scale,
+      direction,
+      rotationSpeed,
+      startX,
+      startRotate,
+      baseY
+    };
+  });
 
   return (
     <>
@@ -58,13 +69,13 @@ const HotboxMode = ({ active }: HotboxModeProps) => {
                 <motion.div
                   key={blunt.id}
                   initial={{ 
-                    x: blunt.direction === 1 ? '-20vw' : '120vw', 
-                    y: 0, 
-                    rotate: 0 
+                    x: blunt.startX,
+                    y: blunt.baseY,
+                    rotate: blunt.startRotate 
                   }}
                   animate={{
-                    x: blunt.direction === 1 ? '120vw' : '-20vw',
-                    y: [0, -50, 50, 0], // Bobbing motion
+                    x: blunt.direction === 1 ? pathEnd : pathStart,
+                    y: [blunt.baseY, blunt.baseY - 40, blunt.baseY + 40, blunt.baseY],
                     rotate: blunt.direction === 1 ? 360 * blunt.rotationSpeed : -360 * blunt.rotationSpeed,
                   }}
                   transition={{
@@ -76,7 +87,7 @@ const HotboxMode = ({ active }: HotboxModeProps) => {
                   className="absolute"
                   style={{ 
                     top: blunt.top,
-                    width: `${12 * blunt.scale}rem`, // Base size * scale
+                    width: `${12 * blunt.scale}rem`,
                     height: `${12 * blunt.scale}rem`
                   }}
                 >

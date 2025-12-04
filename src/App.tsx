@@ -21,10 +21,10 @@ function App() {
   const [isHotboxActive, setIsHotboxActive] = useState(false);
 
   return (
-    <div className="bg-secondary min-h-screen text-white selection:bg-primary selection:text-black font-body">
+    <div className="bg-secondary min-h-screen text-white selection:bg-primary selection:text-black font-body overflow-x-hidden">
       <Navbar isHotboxActive={isHotboxActive} onToggleHotbox={() => setIsHotboxActive(!isHotboxActive)} />
       <LofiPlayer />
-      <HotboxMode active={isHotboxActive} onToggle={() => setIsHotboxActive(!isHotboxActive)} />
+      <HotboxMode active={isHotboxActive} />
       <Marquee420 />
       
       <main>
